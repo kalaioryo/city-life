@@ -16,7 +16,7 @@ MainDiv.appendChild(title);
 //Text input
 
 const textInput = document.createElement('p');
-textInput.innerHTML = 'The quality of life in your city?';
+textInput.innerHTML = 'The quality of life in your city';
 textInput.setAttribute('class', 'title2')
 
 MainDiv.appendChild(textInput);
