@@ -16,7 +16,7 @@ MainDiv.appendChild(title);
 //Text input
 
 const textInput = document.createElement('p');
-textInput.innerHTML = 'controlla la qualità di vita in citta';
+textInput.innerHTML = 'The quality of life in your city?';
 textInput.setAttribute('class', 'title2')
 
 MainDiv.appendChild(textInput);
@@ -233,7 +233,7 @@ myForm.addEventListener("submit", (e) =>{
    let query = mainInput.value.replace(/\s/g , "-");
 
    let empty = () =>{
-      
+
       errorNetwork.style.display = 'none';
       errorEmpty.style.display = '';
       infoContainerDiv.style.display = 'none';
