@@ -1,0 +1,32 @@
+{
+  "name": "city-life",
+  "version": "1.0.0",
+  "description": "S2I JS Advanced Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalaioryo/city-life.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kalaioryo/city-life/issues"
+  },
+  "homepage": "https://github.com/kalaioryo/city-life#readme",
+  "devDependencies": {
+    "axios": "^0.24.0",
+    "css-loader": "^6.5.1",
+    "dotenv-webpack": "^7.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2",
+    "lodash": "^4.17.21"
+  }
+}
