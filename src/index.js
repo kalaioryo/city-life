@@ -3,7 +3,7 @@ import axios from "axios";
 import _ from 'lodash';
 
 
-//#############  Strutture  ######################
+//#############  Structure  ######################
 
 const MainDiv = document.getElementById('wrapped')
 
@@ -38,7 +38,7 @@ mainForm.setAttribute('id', 'myForm');
 
 mainInput.setAttribute('name', 'input');
 mainInput.setAttribute('id', 'input');
-mainInput.setAttribute('placeHolder', 'city');
+mainInput.setAttribute('placeHolder', 'city ex rome');
 mainInput.focus();
 
 //Button Search
