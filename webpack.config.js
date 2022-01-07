@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
 const path = require("path");
 
 module.exports = {
@@ -18,7 +20,8 @@ module.exports = {
           title: "City-Life",
           template: path.resolve(__dirname, './src/index.html'),
         }),
-        new Dotenv()
+        new Dotenv(),
+        new FaviconsWebpackPlugin('./src/img/favicon-16x16.png')
       ],
       module: {
         rules:[
@@ -28,6 +31,15 @@ module.exports = {
                     'style-loader',
                     'css-loader'
                 ]
+            },
+            {
+              test: /\.(gif|png|jpe?g|svg)$/i,
+              use: [
+                'file-loader',
+                {
+                  loader: 'image-webpack-loader',
+                },
+              ],
             }
         ]}
       

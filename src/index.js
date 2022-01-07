@@ -38,7 +38,7 @@ mainForm.setAttribute('id', 'myForm');
 
 mainInput.setAttribute('name', 'input');
 mainInput.setAttribute('id', 'input');
-mainInput.setAttribute('placeHolder', 'city ex rome');
+mainInput.setAttribute('placeHolder', 'city, example Rome');
 mainInput.focus();
 
 //Button Search
@@ -229,8 +229,8 @@ async function getCity(query){
 myForm.addEventListener("submit", (e) =>{
    e.preventDefault();
    console.log('Ho provato a fare il submit');
-
-   let query = mainInput.value.replace(/\s/g , "-");
+   
+   let query = (mainInput.value.trim()).replace(/\s/g , "-");
 
    let empty = () =>{
 
