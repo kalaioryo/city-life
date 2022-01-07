@@ -251,7 +251,7 @@ myForm.addEventListener("submit", (e) =>{
       categoriesBtn.innerHTML = 'Less';
       summaryBtn.innerHTML = 'Less';
 
-      return getCity(query)
+      return getCity(query.toLowerCase())
    }
 
    query === '' ? empty() : request();
