@@ -4,8 +4,13 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 const path = require("path");
 
-module.exports = {
-    entry: './src/index.js',
+module.exports = (env,argv) => {
+
+  const entryPath =
+  argv.mode === "development" ? "./src/index_dev.js" : "./src/index.js";
+  return {
+
+    entry: path.resolve(__dirname, entryPath),
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: '[name].bundle.js',
@@ -36,3 +41,4 @@ module.exports = {
         ]}
       
   };
+}

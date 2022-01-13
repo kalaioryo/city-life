@@ -2,7 +2,7 @@ import './style/style.css';
 import axios from "axios";
 import _ from 'lodash';
 
-console.log('Build mode');
+console.log('Dev mode');
 
 //#############  Structure  ######################
 
@@ -169,8 +169,8 @@ class cityDiv{
    }
  
    //handle get data
-   async elaboraDati(data){   
-      
+   async elaboraDati(data){      
+
       scoreCyty.innerHTML = _.get(data, "teleport_city_score", "-").toFixed() + ' %';
 
       categoriesList.innerHTML = data.categories.map((category, id) => {
@@ -201,7 +201,7 @@ async function getCity(query){
    axios.get(`https://api.teleport.org/api/urban_areas/slug:${query}/scores/`)
    .then(res => {
      // handle success
-     
+
      errorQuery.style.display = 'none';
 
      return res&&citta.elaboraDati(res.data)
@@ -267,7 +267,7 @@ categoriesBtn.addEventListener('click', handleDiv);
 summaryBtn.addEventListener('click', handleDiv);
 
 function handleDiv(element){
-
+   
    
    let el = element.target.id;
    console.log(element);
