@@ -24,7 +24,8 @@ h1{
 }
 
 body{ 
-    background-image: url(https://cdn.pixabay.com/photo/2017/01/18/21/49/singapore-1990959_960_720.jpg), black;
+    background-color: black;
+    background-image: url(https://cdn.pixabay.com/photo/2017/01/18/21/49/singapore-1990959_960_720.jpg);
     background-repeat: no-repeat;
     /* background-position: center; */
     background-attachment: fixed;
