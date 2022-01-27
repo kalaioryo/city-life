@@ -5,7 +5,7 @@ S2I JS Advanced Project
 
 ![Screenshoot](src\img\ScreenshotApp.png)
 
-![Screenshoot](https://github.com/kalaioryo/city-life/blob/main/src/img/Screenshot.png)
+![Screenshoot](https://github.com/kalaioryo/city-life/blob/main/src/img/ScreenshotApp.png)
 
 
 
