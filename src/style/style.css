@@ -23,8 +23,8 @@ h1{
     color: white;
 }
 
-body{
-    background-image: url(https://cdn.pixabay.com/photo/2017/01/18/21/49/singapore-1990959_960_720.jpg);
+body{ 
+    background-image: url(https://cdn.pixabay.com/photo/2017/01/18/21/49/singapore-1990959_960_720.jpg), black;
     background-repeat: no-repeat;
     /* background-position: center; */
     background-attachment: fixed;
@@ -33,6 +33,7 @@ body{
     justify-content: center;
     text-align: center;
 }
+
 div{
     padding: 5px;
 }
