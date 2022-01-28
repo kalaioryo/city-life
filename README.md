@@ -9,7 +9,13 @@ S2I JS Advanced Project
 
 L'app consente di ottenere i dati dall'[API gratuita di Teleport](https://developers.teleport.org/api/getting_started/)
 
+Ho configurato Webpack in modo che abbia sia una modalità developer sia una modalita production abbia la propria fonte.
+
 Non è necessario usare il file .env e le variabili d'ambiente dato che l'API non la richiede, ho comunque installato lo stesso `dotenv-webpack` sia a dimostrazione di aver compreso il funzionamento, sia per un possibile arricchimento futuro dell'app con ulteriori API esterne.
+
+Rinominare il file `.env.example` in `.env`, inserire la tua API_KEY in `"Inserire qui la tua API_KEY"`.
+
+Trovi come recuperarlo all'inizio del codice commentato in `index.js` o in `index_dev.js`
 
 
 ## Built With

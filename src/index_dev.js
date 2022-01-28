@@ -4,6 +4,11 @@ import _ from 'lodash';
 
 console.log('Dev mode');
 
+//Example use API_KEY
+//console.log(process.env.API_KEY);
+// const API_KEY = process.env.API_KEY;  //Use your future API_KEY here.
+
+
 //#############  Structure  ######################
 
 const MainDiv = document.getElementById('wrapped')
@@ -40,8 +45,8 @@ mainForm.setAttribute('id', 'myForm');
 mainInput.setAttribute('name', 'input');
 mainInput.setAttribute('id', 'input');
 mainInput.setAttribute('type', 'text');
-mainInput.setAttribute('pattern', '[A-Za-z]+');
-mainInput.setAttribute('title', 'Inserire solo lettere A-Za-z');
+mainInput.setAttribute('pattern', '[A-Za-z, \s]+');
+mainInput.setAttribute('title', 'Inserire solo lettere A-Z a-z');
 mainInput.setAttribute('placeHolder', 'city, example Rome');
 mainInput.focus();
 
