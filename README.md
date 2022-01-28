@@ -33,21 +33,18 @@ Per ottenere una copia locale
 
   1. Clona il repository
     
-    ```
     gh repo clone kalaioryo/city-life
-    ```
+    
 
   2. installa i pacchetti NPM
 
-    ```
     npm install
-    ```
 
   3. Build dalla fonte
 
-    ```
+    
     npm run build
-    ```
+   
 
 ## Utilizzo
 
@@ -55,7 +52,7 @@ Inserire nell'input il nome della città interessata in inglese come da esempio
 
 verranno riportati tutti i valori suddivisi in categorie riguardanti la qualità della città scelta, più un piccolo sommario;
 
-è possibile ridurre il numero delle informazioni tramite i relativi button `Less...`
+è possibile ridurre il numero delle informazioni tramite i relativi button `Less`
 
 ## Licenza
 
