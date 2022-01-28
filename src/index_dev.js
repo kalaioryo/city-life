@@ -39,6 +39,7 @@ mainForm.setAttribute('id', 'myForm');
 
 mainInput.setAttribute('name', 'input');
 mainInput.setAttribute('id', 'input');
+mainInput.setAttribute('type', 'text');
 mainInput.setAttribute('placeHolder', 'city, example Rome');
 mainInput.focus();
 
