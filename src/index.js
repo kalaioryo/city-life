@@ -113,6 +113,7 @@ summaryBtn.innerHTML = 'Less';
 
 //##################  STYLES  #################
 
+
 infoContainerDiv.setAttribute('id', 'infoContainerDiv');
 infoContainerDiv.style.display = 'none';
 
@@ -137,7 +138,7 @@ summaryBtn.setAttribute('id', 'summaryBtn');
 
 //##################  AppendChild Info Div ########################
 
-MainDiv.appendChild(infoContainerDiv); //appende il tutto al div principale
+MainDiv.appendChild(infoContainerDiv); //Append all  Info div at Maindiv
 
 infoContainerDiv.appendChild(nameCity);
 infoContainerDiv.appendChild(scoreCyty);
@@ -212,6 +213,7 @@ async function getCity(query){
      // handle success
      
      errorQuery.style.display = 'none';
+     errorNetwork.style.display = 'none';
 
      return res&&citta.elaboraDati(res.data)
    })
@@ -276,35 +278,33 @@ categoriesBtn.addEventListener('click', handleDiv);
 summaryBtn.addEventListener('click', handleDiv);
 
 function handleDiv(element){
-
-   
+  
    let el = element.target.id;
-   console.log(element);
+
    function changeText(btn){
+
       btn.innerHTML === 'Less' ? 
          btn.innerHTML = 'More' 
          : btn.innerHTML = 'Less';
    }
    
-   function hide(el) {
-      
-      console.log(el);
-      
+   function hideShow(el) {
+            
       el.style.display === '' ?
          el.style.display = 'none'
-         : el.style.display ='';      
+         : el.style.display = '';      
    }
    
-   //console.log('click');
-   //console.log(element.target.id); //debug
    switch(el){
+
       case 'categoriesBtn':
-         changeText(categoriesBtn)
-         hide(categoriesList);
+         changeText(categoriesBtn);
+         hideShow(categoriesList);
          break;
+
       case 'summaryBtn':
-         changeText(summaryBtn)
-         hide(summaryDiv);
+         changeText(summaryBtn);
+         hideShow(summaryDiv);
          break;
    }
 }

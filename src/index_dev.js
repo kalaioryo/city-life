@@ -2,7 +2,7 @@ import './style/style.css';
 import axios from "axios";
 import _ from 'lodash';
 
-console.log('Dev mode');
+console.log('dev mode');
 
 //Example use API_KEY
 //console.log(process.env.API_KEY);
@@ -47,6 +47,7 @@ mainInput.setAttribute('id', 'input');
 mainInput.setAttribute('type', 'text');
 mainInput.setAttribute('pattern', '[A-Za-z, \s]+');
 mainInput.setAttribute('title', 'Inserire solo lettere A-Z a-z');
+
 mainInput.setAttribute('placeHolder', 'city, example Rome');
 mainInput.focus();
 
@@ -112,6 +113,7 @@ summaryBtn.innerHTML = 'Less';
 
 //##################  STYLES  #################
 
+
 infoContainerDiv.setAttribute('id', 'infoContainerDiv');
 infoContainerDiv.style.display = 'none';
 
@@ -136,7 +138,7 @@ summaryBtn.setAttribute('id', 'summaryBtn');
 
 //##################  AppendChild Info Div ########################
 
-MainDiv.appendChild(infoContainerDiv); //appende il tutto al div principale
+MainDiv.appendChild(infoContainerDiv); //Append all  Info div at Maindiv
 
 infoContainerDiv.appendChild(nameCity);
 infoContainerDiv.appendChild(scoreCyty);
@@ -177,8 +179,8 @@ class cityDiv{
    }
  
    //handle get data
-   async elaboraDati(data){      
-
+   async elaboraDati(data){   
+      
       scoreCyty.innerHTML = _.get(data, "teleport_city_score", "-").toFixed() + ' %';
 
       categoriesList.innerHTML = data.categories.map((category, id) => {
@@ -209,8 +211,9 @@ async function getCity(query){
    axios.get(`https://api.teleport.org/api/urban_areas/slug:${query}/scores/`)
    .then(res => {
      // handle success
-
+     
      errorQuery.style.display = 'none';
+     errorNetwork.style.display = 'none';
 
      return res&&citta.elaboraDati(res.data)
    })
@@ -275,35 +278,33 @@ categoriesBtn.addEventListener('click', handleDiv);
 summaryBtn.addEventListener('click', handleDiv);
 
 function handleDiv(element){
-   
-   
+  
    let el = element.target.id;
-   console.log(element);
+
    function changeText(btn){
+
       btn.innerHTML === 'Less' ? 
          btn.innerHTML = 'More' 
          : btn.innerHTML = 'Less';
    }
    
-   function hide(el) {
-      
-      console.log(el);
-      
+   function hideShow(el) {
+            
       el.style.display === '' ?
          el.style.display = 'none'
-         : el.style.display ='';      
+         : el.style.display = '';      
    }
    
-   //console.log('click');
-   //console.log(element.target.id); //debug
    switch(el){
+
       case 'categoriesBtn':
-         changeText(categoriesBtn)
-         hide(categoriesList);
+         changeText(categoriesBtn);
+         hideShow(categoriesList);
          break;
+
       case 'summaryBtn':
-         changeText(summaryBtn)
-         hide(summaryDiv);
+         changeText(summaryBtn);
+         hideShow(summaryDiv);
          break;
    }
 }
