@@ -20,6 +20,7 @@ Trovi come recuperarlo all'inizio del codice commentato in `index.js` o in `inde
 
 ## Built With
 
+- Webpack
 - Lodash
 - Axios
 
