@@ -2,12 +2,9 @@ import './style/style.css';
 import axios from "axios";
 import _ from 'lodash';
 
-console.log('Build mode');
-
 //Example use API_KEY
 //console.log(process.env.API_KEY);
 // const API_KEY = process.env.API_KEY;  //Use your future API_KEY here.
-
 
 //#############  Structure  ######################
 
@@ -179,7 +176,7 @@ class cityDiv{
    }
  
    //handle get data
-   async elaboraDati(data){   
+   async handleDataApi(data){   
       
       scoreCyty.innerHTML = _.get(data, "teleport_city_score", "-").toFixed() + ' %';
 
@@ -203,7 +200,7 @@ class cityDiv{
    }  
 }
 
-let citta = new cityDiv();
+let city = new cityDiv();
 
 //##############  Request Data API  ####################
 
@@ -215,7 +212,7 @@ async function getCity(query){
      errorQuery.style.display = 'none';
      errorNetwork.style.display = 'none';
 
-     return res&&citta.elaboraDati(res.data)
+     return res&&city.handleDataApi(res.data)
    })
    .catch(function (error) {
       // handle error
@@ -239,7 +236,6 @@ async function getCity(query){
 
 myForm.addEventListener("submit", (e) =>{
    e.preventDefault();
-   //console.log('Ho provato a fare il submit');
 
    let EntryInput = mainInput.value.trim();
    
