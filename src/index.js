@@ -2,6 +2,8 @@ import './style/style.css';
 import axios from "axios";
 import _ from 'lodash';
 
+import requestApi from './requestApi';
+
 //Example use API_KEY
 //console.log(process.env.API_KEY);
 // const API_KEY = process.env.API_KEY;  //Use your future API_KEY here.
@@ -152,89 +154,9 @@ summaryContainerTitle.appendChild(summaryBtn);
 infoContainerDiv.appendChild(summaryContainerTitle);
 infoContainerDiv.appendChild(summaryDiv);
 
-//######################  Class Info Div  ###################################
-
-class cityDiv{
-
-   constructor(data){
-      this.data = data;
-   }
-
-   // Function element's maker category
-   itemCategoryMaker(color, name, score, id){
-      return(        
-            `<li id='category${id}' style='border-left:10px solid ${color}'>
-                  <span class='nameCategory'>${name}:</span>
-
-                  <div class='bar'>
-                     <span class='line' style='background-color:${color}; width: 100%'></span>
-                     <span class='score' style='border: 4px solid${color}'>${score.toFixed()}</span>
-                  </div>
-                  
-            </li>`
-      )
-   }
- 
-   //handle get data
-   async handleDataApi(data){   
-      
-      scoreCyty.innerHTML = _.get(data, "teleport_city_score", "-").toFixed() + ' %';
-
-      categoriesList.innerHTML = data.categories.map((category, id) => {
-
-         let color = category.color;
-         let name = category.name;
-         let score = category.score_out_of_10;
-
-         return this.itemCategoryMaker(color, name, score, id)
-
-      }).toString().replace(/,/g,"");
-            
-      summaryDiv.innerHTML = _.get(data, 'summary', '-');
-
-      this.show(infoContainerDiv)
-   };
-
-   show(element) {
-      element.style.display = '';
-   }  
-}
-
-let city = new cityDiv();
-
-//##############  Request Data API  ####################
-
-async function getCity(query){
-   axios.get(`https://api.teleport.org/api/urban_areas/slug:${query}/scores/`)
-   .then(res => {
-     // handle success
-     
-     errorQuery.style.display = 'none';
-     errorNetwork.style.display = 'none';
-
-     return res&&city.handleDataApi(res.data)
-   })
-   .catch(function (error) {
-      // handle error
-    
-   if(error.message === 'Network Error'){
-      errorNetwork.style.display = '';
-      infoContainerDiv.style.display = 'none';
-      mainInput.focus();
-
-   } else {
-      console.log(error.message);
-      errorQuery.style.display = '';
-      infoContainerDiv.style.display = 'none';
-      mainInput.focus();
-     }
-   })
-}
-
-
 //###############  Handle Input  ####################
 
-myForm.addEventListener("submit", (e) =>{
+myForm.addEventListener("submit", async (e) =>{
    e.preventDefault();
 
    let EntryInput = mainInput.value.trim();
@@ -249,9 +171,9 @@ myForm.addEventListener("submit", (e) =>{
       mainInput.focus();
    }
 
-   let request = () => {
+   let request = async () => {
       nameCity.innerHTML= `${query.replace(/\-/g , " ")}`;
-      console.log(query);
+      query.toLowerCase()
       mainInput.value = '';
 
       errorEmpty.style.display = 'none';
@@ -260,12 +182,88 @@ myForm.addEventListener("submit", (e) =>{
       categoriesBtn.innerHTML = 'Less';
       summaryBtn.innerHTML = 'Less';
 
-      return getCity(query.toLowerCase())
+      let {data, err} = await requestApi(query);
+
+      if(err){
+
+         handleError(err)
+                 
+      } else {
+         errorQuery.style.display = 'none';
+         errorNetwork.style.display = 'none';
+         console.log(data);
+         return handleDataApi(data)
+      }     
    }
 
-   query === '' ? empty() : request();
-
+   if(!query){
+      empty()
+   }else{
+      request()
+   }
 });
+
+//####################### handle error ##############
+
+function handleError (err){
+
+   if(err.message === 'Network Error'){
+
+      errorQuery.style.display = 'none';
+      errorNetwork.style.display = '';
+      infoContainerDiv.style.display = 'none';
+      mainInput.focus();
+      console.error(err)
+
+   }else{
+      
+      errorNetwork.style.display = 'none';
+      errorQuery.style.display = '';
+      infoContainerDiv.style.display = 'none';
+      mainInput.focus();
+      console.error(err)
+   }
+}
+
+//######################  Info Div  ###################################
+
+function itemCategoryMaker(color, name, score, id){
+   return(        
+         `<li id='category${id}' style='border-left:10px solid ${color}'>
+               <span class='nameCategory'>${name}:</span>
+
+               <div class='bar'>
+                  <span class='line' style='background-color:${color}; width: 100%'></span>
+                  <span class='score' style='border: 4px solid${color}'>${score.toFixed()}</span>
+               </div>
+               
+         </li>`
+   )
+}
+
+function show(element) {
+   element.style.display = '';
+} 
+
+async function handleDataApi(data){   
+      
+   scoreCyty.innerHTML = _.get(data, "teleport_city_score", "-").toFixed() + ' %';
+
+   categoriesList.innerHTML = data.categories.map((category, id) => {
+
+      let color = category.color;
+      let name = category.name;
+      let score = category.score_out_of_10;
+
+      return itemCategoryMaker(color, name, score, id)
+
+   }).toString().replace(/,/g,"");
+         
+   summaryDiv.innerHTML = _.get(data, 'summary', '-');
+
+   show(infoContainerDiv)
+};
+
 
 //#############  Handle Button Section  ################
 //the function manages the appearance/disappearance of the DIVs based on the target element
@@ -279,16 +277,21 @@ function handleDiv(element){
 
    function changeText(btn){
 
-      btn.innerHTML === 'Less' ? 
+      if(btn.innerHTML === 'Less'){
+
          btn.innerHTML = 'More' 
-         : btn.innerHTML = 'Less';
+      }else{
+         btn.innerHTML = 'Less';
+      }
    }
    
    function hideShow(el) {
-            
-      el.style.display === '' ?
+
+      if(el.style.display === ''){
          el.style.display = 'none'
-         : el.style.display = '';      
+      }else{
+         el.style.display = ''
+      }   
    }
    
    switch(el){
