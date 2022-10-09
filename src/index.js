@@ -159,7 +159,7 @@ infoContainerDiv.appendChild(summaryDiv);
 myForm.addEventListener("submit", async (e) =>{
    e.preventDefault();
 
-   let EntryInput = mainInput.value.trim();
+   let EntryInput = mainInput.value.trim().toLowerCase();
    
    let query = EntryInput.replace(/\s/g , "-");
 
