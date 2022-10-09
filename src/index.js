@@ -173,7 +173,6 @@ myForm.addEventListener("submit", async (e) =>{
 
    let request = async () => {
       nameCity.innerHTML= `${query.replace(/\-/g , " ")}`;
-      query.toLowerCase()
       mainInput.value = '';
 
       errorEmpty.style.display = 'none';
